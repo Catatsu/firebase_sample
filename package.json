@@ -1,0 +1,33 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "fblogin": "yarn firebase login",
+    "funcs:build": "babel src/functions --out-dir dist/functions",
+    "funcs:clean": "rimraf dist/functions",
+    "funcs:copy": "cpx '*{package.json,yarn.lock}' dist/functions",
+    "prefuncs:deploy": "yarn funcs:clean && yarn funcs:build && yarn funcs:copy",
+    "funcs:deploy": "yarn firebase deploy --only functions",
+    "funcs:install": "cd dist/functions && yarn",
+    "prefuncs:server": "yarn funcs:deploy",
+    "funcs:serve": "firebase serve --only functions -o 0.0.0.0",
+    "prefuncs:shell": "yarn funcs:build && yarn funcs:install",
+    "funcs:shell": "yarn firebase experimental:functions:shell",
+    "funcs:logs": "yarn firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~5.12.1",
+    "firebase-functions": "^1.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "cpx": "^1.5.0",
+    "eslint": "^4.12.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "firebase-tools": "^3.18.4",
+    "rimraf": "^2.6.2"
+  },
+  "private": true
+}

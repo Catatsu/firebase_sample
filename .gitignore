@@ -1,5 +1,6 @@
 ### 🐱origin contents🐱 ###
 .firebaserc
+dist
 keys/*.json
 firestore/dump/*.json
 
